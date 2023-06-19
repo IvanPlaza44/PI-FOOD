@@ -11,10 +11,12 @@
     text-align: center;
     margin-top: 20px;
     font-size: 20px;
+    overflow-wrap: break-word;
 }
 
 .divContainer img {
     width: 80%;
+    height: 50%;
     align-self: center;       
     border-radius: 10px;
     box-shadow: 0px 15px 6px rgba(243, 243, 243, 0.164);

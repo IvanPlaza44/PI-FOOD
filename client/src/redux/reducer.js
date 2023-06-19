@@ -54,12 +54,13 @@ const reducer = (state = initialState, action) => {
 
       case ORDER_RECIPES_HEALTSCORE:
         const orderedRecipeHS = action.payload === "Menor"
-        ? [...state.recipes].sort((a,b)=> a.healthScore - b.healthScore)
-        : [...state.recipes].sort((a,b)=> b.healthScore - a.healthScore)
-        return{
+          ? [...state.originalRecipes].sort((a, b) => a.healthScore - b.healthScore)
+          : [...state.originalRecipes].sort((a, b) => b.healthScore - a.healthScore);
+        return {
           ...state,
-          recipes:orderedRecipeHS
-        }
+          originalRecipes: orderedRecipeHS,
+          recipes: orderedRecipeHS
+        };
 
     default: 
       return state;

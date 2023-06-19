@@ -29,7 +29,7 @@ const cleanRecipesDB = (arr) =>
     summary: recip.summary,
     healthScore: recip.healthScore,
     steps: recip.steps,
-    diets: recip.diets.map((diet) => ` - ${diet.name}`),
+    diets: recip.diets.map((diet) => diet.name),
     created: true,
   }));
 

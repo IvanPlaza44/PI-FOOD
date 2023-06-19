@@ -19,7 +19,7 @@ const validate =(form)=>{
         errors.image = "Ingrese una URL"
     }
     /// VALIDATE SUMMARY
-    if(!/^.{1,100}$/.test(form.summary)){
+    if(!/^.{1,500}$/.test(form.summary)){
         errors.summary = "No puedes exceder los 100 caracteres"
     }
     if(form.summary.length === 0){
@@ -30,7 +30,7 @@ const validate =(form)=>{
         errors.healthScore = "El puntaje debe ser del 1 al 100"
     }
      /// VALIDATE STEPS
-     if(!/^.{1,100}$/.test(form.steps)){
+     if(!/^.{1,500}$/.test(form.steps)){
         errors.steps = "No puedes exceder los 100 caracteres"
     }
     if(form.steps.length === 0){
