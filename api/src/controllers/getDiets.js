@@ -1,5 +1,5 @@
 const { Diets } = require("../db")
-const { cleanRecipeById } = require("./cleanersData");
+const { cleanRecipes } = require("./cleanersData");
 const axios = require("axios");
 const { API_KEY } = process.env;
 const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
@@ -16,13 +16,18 @@ const getDiets = async() =>{
                 diets = [...diets, diet]
             }
         })
-        return cleanRecipeById(recip)
+        return cleanRecipes([recip])
     })
     diets = diets.map(diet => {
         return {name: diet}})
 
 
-    await Diets.bulkCreate(diets);
+        for (const diet of diets) {
+            const existingDiet = await Diets.findOne({ where: { name: diet.name } });
+            if (!existingDiet) {
+              await Diets.create(diet);
+            }
+          }
     
     return {recipes, diets}
 

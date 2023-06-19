@@ -5,19 +5,6 @@ const getRecipeByName = require("../controllers/getRecipeByName")
 const getAllRecipes = require("../controllers/getAllRecipes")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const getRecipeByIdHandler = async (req, res)=>{ 
     const { id } = req.params;
     const source = isNaN(id) ? "DB" : "API" 
@@ -28,11 +15,6 @@ const getRecipeByIdHandler = async (req, res)=>{
         res.status(404).json({error: error.message})
     }
 };
-
-
-
-
-
 
 
 const getRecipeByNameHandler = async(req, res)=>{
@@ -46,15 +28,11 @@ const getRecipeByNameHandler = async(req, res)=>{
 
 
 
-
-
-
-
-
 const postRecipeHandler = async (req, res) =>{
-    const { name, image, summary, healthScore, steps } = req.body;
+    const { name, image, summary, healthScore, steps, diets } = req.body;
     try {
-        const newRecipes = await postRecipe(name, image, summary, healthScore, steps)
+        const newRecipes = await postRecipe(name, image, summary, healthScore, steps, diets)
+        if(!name || !image || !summary || !healthScore || !steps || !diets) throw new Error("Faltan campos por llenar")
         res.status(201).json(newRecipes)
     } catch (error) {
         res.status(404).json({error: error.message})

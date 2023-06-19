@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
     },
 
     steps: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     
