@@ -8,6 +8,11 @@ function SearchBar() {
   const [ name, setName ] = useState("");
   const dispatch = useDispatch();
 
+
+  const handleChange = (event) => {
+    setName(event.target.value);
+};
+
   const onSearch = (name) => {
     if (!name) {
       alert("Por favor, ingresa un nombre de receta válido");
@@ -19,11 +24,6 @@ function SearchBar() {
     setName("");
   };
 
-  const handleChange = (event) => {
-    
-    setName(event.target.value);
- 
-};
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,7 +32,6 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit}>
-      
         <input className={style.input} value={name} onChange={handleChange} type="search" placeholder=" Search Recipe..." />
         <button className={style.btn} type="submit"><img src={IconoLupa} alt="" /></button>
     </form>

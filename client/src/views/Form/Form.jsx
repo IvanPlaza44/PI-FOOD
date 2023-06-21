@@ -1,10 +1,13 @@
 import { useState } from "react";
-import axios from "axios"
 import validate from "./validate";
 import style from "./Form.module.css"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { postRecipe } from "../../redux/actions";
 
 const Form =()=>{
+
+  const dispatch = useDispatch()
 
     const [ form, setForm ] = useState({
         name: "",
@@ -68,10 +71,7 @@ const Form =()=>{
       
       const handlerSubmit =(event)=>{
         event.preventDefault();
-        axios.post("http://localhost:3001/recipes", form)
-        .then(res=>alert(res))
-        .catch(err=>alert(err))
-
+        dispatch(postRecipe(form, errors))
         
         setForm({
           name: "",
@@ -100,7 +100,6 @@ const Form =()=>{
             <div className={style.boxInput}>
                 <label >Image </label>
                 <input type="text" onChange={handleChange} value={form.image} name="image"/>
-                {/* {form.image && <img src={form.image} alt="Recipe" />} */}
                 {form.image && errors.image && <p style={{color: "orangered"}}>{errors.image}</p>}
             </div>
             <br />
@@ -129,7 +128,7 @@ const Form =()=>{
 
             <div className={style.boxInput}>
                 <label>Diets </label>
-                <select name="diets" onChange={handleChangeDiets} value={form.diets}>
+                <select name="diets" multiple onChange={handleChangeDiets} value={form.diets}>
                     <option value="" disabled >Select Recipes</option>
                     <option value="1">Vegetarian</option>
                     <option value="2">Gluten Free</option>
@@ -158,10 +157,10 @@ const Form =()=>{
         </ul>
 
       </div>
-      <div className={style.btn}>
-        <button type="submit">Create Recipe</button>
+      <div className={style.btnContainer}>
+        <button type="submit" className={style.btn}>🍕 Create Recipe</button>
         <Link to="/home">
-          <button type="submit">Go to Home</button>
+          <button type="submit" className={style.btn}>🏠 Go to Home</button>
         </Link>
         
       </div>

@@ -18,4 +18,13 @@
   .btn:hover {
     background-color: rgba(255, 0, 0, 0.562);
   }
+
+  .btnCurrent{
+    background-color: rgba(51, 255, 0, 0.664);
+    color: white;
+    border-radius: 7px;
+    font-family: 'Courgette', cursive;
+    margin-left: 2px;
+    font-size: 20px;
+  }
   

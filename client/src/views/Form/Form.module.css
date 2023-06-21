@@ -7,7 +7,7 @@
     width: 1000px;
     margin-top: 10px;
     margin-left: 250px;
-    height: 700px;
+    height: 100%;
     box-shadow: 15px 15px 10px black;
     border-radius: 15px;
     font-family: 'Courgette', cursive;
@@ -19,7 +19,7 @@
 .diets{
     display: flex;
     gap: 20px;
-    color: green;
+    color: rgb(3, 255, 3);
 }
 
 .boxInput{
@@ -37,10 +37,20 @@
     transition: 0.4s ease;
 }
 
-.btn{
+.btnContainer{
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     justify-content: space-around;
-    margin-left: 300px;
     
+}
+
+.btn{
+    border-radius: 7px;
+    font-family: 'Courgette', cursive;
+    font-size: 20px;
+}
+
+.btn:hover{
+    background-color: rgba(8, 228, 8, 0.623);
+    scale: calc(1.2);
 }

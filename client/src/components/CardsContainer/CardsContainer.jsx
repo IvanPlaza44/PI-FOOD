@@ -13,7 +13,7 @@ const CardsContainer = ({firstIndex, lastIndex})=>{
     return(
         <div className={style.container}>
             
-            {recipes.map((recipe)=>{
+            {Array.isArray(recipes) && recipes.map((recipe)=>{
                 return <Card
                     key={recipe.id}
                     id={recipe.id}

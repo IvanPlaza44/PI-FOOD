@@ -2,7 +2,7 @@
 
 
 
-import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE } from "./actionsTypes";
+import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE } from "./actionsTypes";
 
 const initialState ={
   originalRecipes: [], // Guarda todas las recetas sin filtrar
@@ -18,6 +18,13 @@ const reducer = (state = initialState, action) => {
         recipes: action.payload
       };
     
+    case POST_RECIPE:
+      return {
+        ...state,
+        recipes: action.payload,
+        originalRecipes: action.payload,
+      }
+    
     case SEARCH_RECIPES:
       return {
         ...state,
@@ -25,16 +32,16 @@ const reducer = (state = initialState, action) => {
       };
     
     case ORDER_RECIPES_NAME:
-      const orderedRecipes = action.payload === "A"
+      const orderedRecipesByName = action.payload === "A"
         ? [...state.recipes].sort((a, b) => a.name.localeCompare(b.name))
         : [...state.recipes].sort((a, b) => b.name.localeCompare(a.name));
       return {
         ...state,
-        recipes: orderedRecipes
+        recipes: orderedRecipesByName,
       };
     
     case FILTER_RECIPES_DIETS:
-      const filterRecipesDiets = state.originalRecipes.filter((recipe) => recipe.diets.includes(action.payload));
+      const filterRecipesDiets = [...state.originalRecipes].filter((recipe) => recipe.diets.includes(action.payload));
       return {
         ...state,
         recipes: filterRecipesDiets
@@ -58,7 +65,6 @@ const reducer = (state = initialState, action) => {
           : [...state.originalRecipes].sort((a, b) => b.healthScore - a.healthScore);
         return {
           ...state,
-          originalRecipes: orderedRecipeHS,
           recipes: orderedRecipeHS
         };
 

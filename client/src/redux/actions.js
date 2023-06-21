@@ -1,4 +1,4 @@
-import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE } from "./actionsTypes";
+import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE } from "./actionsTypes";
 import axios from "axios"
 
 
@@ -52,7 +52,33 @@ export const searchRecipes = (name)=>{
     return {type: ORDER_RECIPES_HEALTSCORE, payload: healthScore}
   }
 
+  //--------
+ 
 
+export const postRecipe = (form, errors)=>{
+  return async function(dispatch){
+    const { name, image, summary, healthScore, steps, diets } = errors;
+
+    if (!form.name || !form.image || !form.summary || !form.healthScore || !form.steps || !form.diets) {
+      alert("No pueden haber campos vacios");
+      return;
+    }
+    
+    if (name || image || summary || healthScore || steps || diets) {
+      alert("Hay datos incorrectos");
+      return;
+    }
+
+    try {
+      const postResponse = axios.post("http://localhost:3001/recipes", form)
+      alert("La Receta fue creada con exito")
+      dispatch({ type: POST_RECIPE, payload: postResponse });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+}
 
 
 

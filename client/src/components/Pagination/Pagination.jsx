@@ -29,12 +29,12 @@ export const Pagination = ({recipes, recipesPerPage, currentPage, totalRecipes, 
     <div className={style.container}>
       <button onClick={onPreviusPage} className={currentPage === 1 ? "disabled" : style.btn} disabled={currentPage === 1}>Previous</button>
 
-      
       {
         pageNumbers.map(noPage=>(
-          <button onClick={()=> onSpecificPage(noPage)} className={style.btn} key={noPage}>{noPage} </button>
+          <button onClick={()=> onSpecificPage(noPage)} className={currentPage === noPage ? style.btnCurrent : style.btn} key={noPage}>{noPage}</button>
         ))
       }
+
       <button onClick={onNextPage} className={currentPage >= pageNumbers.length ? "disabled" : style.btn} disabled={currentPage >= pageNumbers.length}>Next</button>
     </div>
 

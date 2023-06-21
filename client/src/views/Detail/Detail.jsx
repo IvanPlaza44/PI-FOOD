@@ -27,27 +27,29 @@ const Detail =()=>{
 
 
     return(
-        <div className={style.container}>
-            <h1 className={style.title}>Recipe Details</h1>
-            {
-                recipe?(
-                    <div>
-                        <div className={style.description}>
-                        <h1>ID: {recipe.id}</h1>
-                        <h1>Name: {recipe.name}</h1>
-                        <h1>Summary: {recipe.summary}</h1>
-                        <h1>Health Score: {recipe.healthScore}</h1>
-                        <h1>Steps by steps: {recipe.steps}</h1>
-                        <h1>Diets: {recipe.diets}</h1>
+        <>
+        <h1 className={style.title}>Details</h1>
+            <div>
+                {
+                    recipe?(
+                        <div className={style.container}>
+                            <div className={style.description}>
+                            <h1>ID: {recipe.id}</h1>
+                            <h1>Name: {recipe.name}</h1>
+                            <h1>Summary: {recipe.summary}</h1>
+                            <h1>Health Score: {recipe.healthScore}</h1>
+                            <h1>Steps by steps: {recipe.steps}</h1>
+                            <h1>Diets: {recipe.diets}</h1>
+                            </div>
+                            <img className={style.imageDetail} src={recipe.image} alt={recipe.name}/>
                         </div>
-                        <img className={style.imageDetail} src={recipe.image} alt={recipe.name}/>
-                    </div>
-                        
+                            
 
-                )
-                :("")
-            }
-        </div>
+                    )
+                    :("")
+                }
+            </div>
+        </>
     )
 }
 export default Detail;

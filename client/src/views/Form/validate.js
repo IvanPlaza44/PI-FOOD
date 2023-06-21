@@ -8,7 +8,7 @@ const validate =(form)=>{
     if(!/^[a-zA-Z\s,]+$/.test(form.name)){
         errors.name = "El nombre no puede tener numeros, ni caractreres especiales"
     }
-    if(form.name.length === 0) {
+    if(form.name.length < 1) {
         errors.name = "Este campo no puede estar vacio"
     }
     /// VALIDATE IMAGE
