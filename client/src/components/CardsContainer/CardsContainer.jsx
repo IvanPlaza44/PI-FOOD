@@ -23,6 +23,7 @@ const CardsContainer = ({firstIndex, lastIndex})=>{
                     healthScore={recipe.healthScore}
                     steps={recipe.steps}
                     diets={recipe.diets}
+                    created={recipe.created}
                     />
             }).slice(firstIndex, lastIndex)}
             

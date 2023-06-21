@@ -2,7 +2,7 @@
 
 
 
-import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE } from "./actionsTypes";
+import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE, DELETE_RECIPE } from "./actionsTypes";
 
 const initialState ={
   originalRecipes: [], // Guarda todas las recetas sin filtrar
@@ -23,6 +23,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         recipes: action.payload,
         originalRecipes: action.payload,
+      }
+    
+    case DELETE_RECIPE:
+      const filterRecipes = state.recipes.filter((recipe) => recipe.id !== action.payload)
+      return{
+        ...state,
+        recipes: filterRecipes
       }
     
     case SEARCH_RECIPES:

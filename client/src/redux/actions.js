@@ -1,4 +1,4 @@
-import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE } from "./actionsTypes";
+import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE, DELETE_RECIPE } from "./actionsTypes";
 import axios from "axios"
 
 
@@ -70,13 +70,30 @@ export const postRecipe = (form, errors)=>{
     }
 
     try {
-      const postResponse = axios.post("http://localhost:3001/recipes", form)
+      const postResponse = await axios.post("http://localhost:3001/recipes", form)
       alert("La Receta fue creada con exito")
       dispatch({ type: POST_RECIPE, payload: postResponse });
     } catch (error) {
       alert(error);
     }
   };
+
+}
+
+///------------
+
+export const deleteRecipe = (id)=>{
+  return async function(dispatch){
+    try {
+      const borrado = await axios.delete(`http://localhost:3001/recipes/${id}`)
+      dispatch({type: DELETE_RECIPE, payload: borrado})
+      
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  
 
 }
 
