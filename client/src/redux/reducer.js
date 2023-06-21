@@ -1,7 +1,4 @@
 
-
-
-
 import { GET_RECIPES, SEARCH_RECIPES, ORDER_RECIPES_NAME, FILTER_RECIPES_DIETS, FILTER_RECIPES_ORIGIN, ORDER_RECIPES_HEALTSCORE, POST_RECIPE, DELETE_RECIPE } from "./actionsTypes";
 
 const initialState ={
@@ -25,12 +22,15 @@ const reducer = (state = initialState, action) => {
         originalRecipes: action.payload,
       }
     
-    case DELETE_RECIPE:
-      const filterRecipes = state.recipes.filter((recipe) => recipe.id !== action.payload)
-      return{
-        ...state,
-        recipes: filterRecipes
-      }
+      case DELETE_RECIPE:
+        const filteredRecipes = state.originalRecipes.filter(
+          (recipe) => recipe.id !== action.payload
+        );
+        return {
+          ...state,
+          originalRecipes: filteredRecipes,
+          recipes: filteredRecipes,
+        };
     
     case SEARCH_RECIPES:
       return {
@@ -46,9 +46,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         recipes: orderedRecipesByName,
       };
+    case ORDER_RECIPES_HEALTSCORE:
+      const orderedRecipeHS = action.payload === "Menor"
+        ? [...state.recipes].sort((a, b) => a.healthScore - b.healthScore)
+        : [...state.recipes].sort((a, b) => b.healthScore - a.healthScore);
+      return {
+        ...state,
+        recipes: orderedRecipeHS
+      };
     
     case FILTER_RECIPES_DIETS:
-      const filterRecipesDiets = [...state.originalRecipes].filter((recipe) => recipe.diets.includes(action.payload));
+      const filterRecipesDiets = state.originalRecipes.filter((recipe) => recipe.diets.includes(action.payload));
       return {
         ...state,
         recipes: filterRecipesDiets
@@ -63,17 +71,9 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        recipes: filterRecipesOrigin
+        recipes: filterRecipesOrigin,
       };
 
-      case ORDER_RECIPES_HEALTSCORE:
-        const orderedRecipeHS = action.payload === "Menor"
-          ? [...state.originalRecipes].sort((a, b) => a.healthScore - b.healthScore)
-          : [...state.originalRecipes].sort((a, b) => b.healthScore - a.healthScore);
-        return {
-          ...state,
-          recipes: orderedRecipeHS
-        };
 
     default: 
       return state;

@@ -1,15 +1,16 @@
 import React from 'react'
 import style from "./Pagination.module.css"
 
-export const Pagination = ({recipes, recipesPerPage, currentPage, totalRecipes, setCurrentPage}) => {
+export const Pagination = ({recipesPerPage, currentPage, totalRecipes, setCurrentPage}) => {
 
   const pageNumbers = [];
 
-  const numberPage = Math.ceil(totalRecipes / recipesPerPage)
+  const totalPage = Math.ceil(totalRecipes / recipesPerPage)
+  console.log(totalPage)
 
-  for (let i = 1; i <= numberPage; i++) {
-    pageNumbers.push(i); //ASI HAGO MI PAGINACION DINAMICA
-    
+  for (let i = 1; i <= totalPage; i++) {
+    pageNumbers.push(i);
+    console.log(pageNumbers) //ASI HAGO MI PAGINACION DINAMICA
   }
 
   ////////////------------

@@ -5,9 +5,7 @@ import style from "./OrderRecipes.module.css"
 
 const OrderRecipes = ()=>{
     const dispatch = useDispatch();
-
-
-
+    
     const handlerOrderName = (event)=>{
         dispatch(orderRecipesName(event.target.value))
     }
