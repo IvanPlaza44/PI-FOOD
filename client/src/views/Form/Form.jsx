@@ -72,6 +72,7 @@ const Form =()=>{
         .then(res=>alert(res))
         .catch(err=>alert(err))
 
+        
         setForm({
           name: "",
           image: "",
