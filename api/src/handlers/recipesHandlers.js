@@ -3,6 +3,7 @@ const postRecipe = require("../controllers/postRecipe")
 const getRecipeById = require("../controllers/getRecipeById")
 const getRecipeByName = require("../controllers/getRecipeByName")
 const getAllRecipes = require("../controllers/getAllRecipes")
+const deleteRecipe = require("../controllers/deleteRecipe")
 
 
 const getRecipeByIdHandler = async (req, res)=>{ 
@@ -41,6 +42,17 @@ const postRecipeHandler = async (req, res) =>{
     
 }
 
+const deleteRecipeHandler = async (req, res)=>{
+    const { id } = req.params;
+    try {
+        const deletededRecipe = await deleteRecipe(id)
+        res.status(200).json(deletededRecipe)
+    } catch (error) {
+        res.status(404).json({error: error.message})
+    }
+
+}
+
 
 
 
@@ -49,5 +61,6 @@ const postRecipeHandler = async (req, res) =>{
 module.exports = {
     getRecipeByIdHandler,
     getRecipeByNameHandler,
-    postRecipeHandler
+    postRecipeHandler,
+    deleteRecipeHandler
 };
