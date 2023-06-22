@@ -7,7 +7,7 @@ const cleanSteps = (arr)=>{
 
 const cleanRecipes = (arr)=>
     arr.map((recip) => {
-        if(recip.vegetarian) recip.diets = [...recip.diets, "vegetarian"]
+        if(recip.vegetarian && !recip.diets.includes("vegetarian")) recip.diets = [...recip.diets, "vegetarian"]
         return{
             id: recip.id,
             name: recip.title,
