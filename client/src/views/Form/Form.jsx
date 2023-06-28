@@ -128,7 +128,7 @@ const Form =()=>{
 
             <div className={style.boxInput}>
                 <label>Diets </label>
-                <select name="diets" multiple onChange={handleChangeDiets} value={form.diets}>
+                <select name="diets"   onChange={handleChangeDiets} value={form.diets}>
                     <option value="" disabled >Select Recipes</option>
                     <option value="1">Vegetarian</option>
                     <option value="2">Gluten Free</option>
@@ -150,7 +150,7 @@ const Form =()=>{
         <ul className={style.diets}>
           {form.diets.map((diet) => (
             <li key={diet}>
-              {dietOptions[diet]}
+              {dietOptions[ diet ] }
               <button onClick={() => handleRemoveDiet(diet)}>x</button>
             </li>
           ))}

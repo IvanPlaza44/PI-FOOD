@@ -20,6 +20,7 @@
     display: flex;
     gap: 20px;
     color: rgb(3, 255, 3);
+    list-style: none;
 }
 
 .boxInput{
